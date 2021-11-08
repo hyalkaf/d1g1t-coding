@@ -41,11 +41,20 @@ export function findIdInTreeByValue(
   value: number
 ): number | undefined {
   // We Can recursively search on items
-  const itemWithId = items.find(({ id, values, children }) =>
-    values.find((v) => v === value) ? id : findIdInTreeByValue(children, value)
-  );
+  let finalId;
+  if (items) {
+    items.find(({ id, values, children }) => {
+      if (values.find((v) => v === value)) {
+        finalId = id;
+        return id;
+      }
+      const childId = findIdInTreeByValue(children, value);
+      finalId = childId;
+      return childId;
+    });
+  }
 
-  return itemWithId ? itemWithId.id : undefined;
+  return finalId;
 }
 
 /**

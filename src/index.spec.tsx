@@ -24,42 +24,68 @@ describe("consecutive()", () => {
 });
 
 describe("findIdInTreeByValue()", () => {
-  const testTree: TreeNode[] = [
-    { id: 1, values: [100, 101] },
-    { id: 2, values: [200, 201] },
-    {
-      id: 3,
-      values: [300, 301],
-      children: [
-        { id: 10, values: [1000, 1001] },
-        { id: 9, values: [900, 901] },
-        {
-          id: 8,
-          values: [800, 801],
-          children: [
-            { id: 7, values: [700, 701] },
-            { id: 6, values: [600, 601] }
-          ]
-        }
-      ]
-    }
-  ];
-  const cases = [
-    {
-      input: 7001,
-      output: undefined
-    },
-    {
-      input: 601,
-      output: 6
-    }
-  ];
+  describe("provided Test Case", () => {
+    const testTree: TreeNode[] = [
+      { id: 1, values: [100, 101] },
+      { id: 2, values: [200, 201] },
+      {
+        id: 3,
+        values: [300, 301],
+        children: [
+          { id: 10, values: [1000, 1001] },
+          { id: 9, values: [900, 901] },
+          {
+            id: 8,
+            values: [800, 801],
+            children: [
+              { id: 7, values: [700, 701] },
+              { id: 6, values: [600, 601] }
+            ]
+          }
+        ]
+      }
+    ];
+    const cases = [
+      {
+        input: 7001,
+        output: undefined
+      },
+      {
+        input: 601,
+        output: 6
+      }
+    ];
 
-  for (const c of cases) {
-    it(`findIdInTreeByValue - basic test, expected output = ${c.output}`, () => {
-      expect(findIdInTreeByValue(testTree, c.input)).toBe(c.output);
-    });
-  }
+    for (const c of cases) {
+      it(`findIdInTreeByValue - basic test, expected output = ${c.output}`, () => {
+        expect(findIdInTreeByValue(testTree, c.input)).toBe(c.output);
+      });
+    }
+  });
+  describe("when there are two matches return first node found", () => {
+    const testTree: TreeNode[] = [
+      {
+        id: 1,
+        values: [100, 101]
+      },
+      {
+        id: 2,
+        values: [100, 101]
+      }
+    ];
+    const cases = [
+      {
+        input: 100,
+        output: 1
+      }
+    ];
+
+    for (const c of cases) {
+      it(`findIdInTreeByValue - basic test, expected output = ${c.output}`, () => {
+        expect(findIdInTreeByValue(testTree, c.input)).toBe(c.output);
+      });
+    }
+  });
 });
 
 describe("highlightMatch()", () => {
