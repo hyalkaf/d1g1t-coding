@@ -1,0 +1,43 @@
+{
+  "name": "d1g1t-coding-eval",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "jest": "26.5.3",
+    "react": "16.14.0",
+    "ts-jest": "26.4.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.6.1"
+  },
+  "keywords": [],
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "isolatedModules": true,
+        "tsConfig": {
+          "esModuleInterop": true
+        }
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "transform": {
+      ".(ts|tsx|esm)": "ts-jest"
+    },
+    "modulePaths": [
+      "src/"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$"
+  }
+}
