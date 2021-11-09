@@ -71,7 +71,29 @@ consecutiveNumbersLength([5, 5, 3, 1]) // => 1
  */
 
 export function consecutive(numbers: number[]): number {
-  // implement me
+  // we can use an object to store seen numbers
+  // and count biggest count by checking element + 1
+  // of each element in array after finding min element
+  // and iterating from there
+  const seen = numbers.reduce(
+    (obj, num) => ({
+      ...obj,
+      [num]: true
+    }),
+    {}
+  );
+
+  const longestSeq = numbers.reduce((count, num) => {
+    let newCount = 1;
+    let currentNum = num + 1;
+    while (seen[currentNum]) {
+      newCount++;
+      currentNum++;
+    }
+    return newCount > count ? newCount : count;
+  }, 0);
+
+  return longestSeq;
 }
 
 /**
@@ -103,5 +125,13 @@ export function highlightMatch(
   text: string,
   matchString: string
 ): React.ReactNode {
-  // implement me
+  // we can use regex to match with case insensitivity
+  const caseInsensitiveRegEx = new RegExp(`(${matchString})`, "i");
+  const textSplitIntoArr = text.split(caseInsensitiveRegEx);
+  return textSplitIntoArr.filter(Boolean).map((partsOfTxt, i) => {
+    if (partsOfTxt.toUpperCase() === matchString.toUpperCase()) {
+      return <strong key={i}>{partsOfTxt}</strong>;
+    }
+    return <React.Fragment key={i}>{partsOfTxt}</React.Fragment>;
+  });
 }

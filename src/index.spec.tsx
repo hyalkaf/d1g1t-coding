@@ -114,7 +114,7 @@ describe("highlightMatch()", () => {
     );
     const expected = [
       <strong key={0}>Multi</strong>,
-      <React.Fragment key={1}> Test return </React.Fragment>,
+      <React.Fragment key={1}> Test returns </React.Fragment>,
       <strong key={2}>multi</strong>,
       <React.Fragment key={3}>ple results</React.Fragment>
     ];
